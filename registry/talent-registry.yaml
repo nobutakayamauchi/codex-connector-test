@@ -1,0 +1,50 @@
+version: 0.1
+purpose: sandbox-reference-only
+
+external:
+  agency_agents:
+    - id: "agency_agents.agency-agents"
+      name: "agency-agents"
+      source: "https://github.com/msitarzewski/agency-agents"
+      role_hint: "code review / implementation support candidate"
+      authority: "reference"
+
+  anthropics_skills:
+    - id: "anthropics_skills.anthropic-skills"
+      name: "Anthropic Skills"
+      source: "https://github.com/anthropics/skills"
+      role_hint: "skill design and workflow pattern reference candidate"
+      authority: "reference"
+
+  mcp_reference_servers:
+    - id: "mcp_reference_servers.filesystem"
+      name: "filesystem"
+      source: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+      role_hint: "local repo inspection candidate"
+      authority: "reference"
+    - id: "mcp_reference_servers.git"
+      name: "git"
+      source: "https://github.com/modelcontextprotocol/servers/tree/main/src/git"
+      role_hint: "PR/issue metadata candidate"
+      authority: "reference"
+
+  mcp_registry:
+    - id: "mcp_registry.modelcontextprotocol-registry"
+      name: "modelcontextprotocol/registry"
+      source: "https://github.com/modelcontextprotocol/registry"
+      role_hint: "MCP server discovery reference"
+      authority: "reference"
+
+  postiz_app:
+    - id: "postiz_app.postiz"
+      name: "postiz"
+      source: "https://github.com/gitroomhq/postiz-app"
+      role_hint: "social publishing stack candidate"
+      authority: "reference"
+
+  openshorts:
+    - id: "openshorts.openshorts"
+      name: "openshorts"
+      source: "https://github.com/mutonby/openshorts"
+      role_hint: "short-form content automation candidate"
+      authority: "reference"
