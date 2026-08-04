@@ -1,0 +1,36 @@
+schema_version: "1.0"
+project_id: kernel-sandbox-recovery-pilot-001
+status: LOCKED_FOR_PILOT
+purpose:
+  input: pilot/input.txt
+  processing:
+    - trim surrounding whitespace
+    - convert ASCII letters to lowercase
+    - remove blank lines
+    - remove duplicate lines
+    - sort ascending by byte order
+  output: pilot/output.txt
+minimum_success:
+  - output exists
+  - output exactly matches the ordered expected_lines list
+  - no existing main-branch file is modified
+expected_lines:
+  - apple
+  - banana
+  - grape
+  - orange
+out_of_scope:
+  - runtime code
+  - CI changes
+  - product behavior
+  - network access
+  - external actions
+  - RTS changes
+  - secrets or private data
+work_in_progress_limit: 1
+maximum_ai_cycles: 3
+stop_conditions:
+  - required input missing
+  - adapter scope mismatch
+  - expected output ambiguous
+  - any forbidden path would need modification
