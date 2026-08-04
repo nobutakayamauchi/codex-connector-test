@@ -1,0 +1,19 @@
+schema_version: "1.0"
+profile_id: baseline-planner-v1
+status: PILOT_ONLY
+role: prepare_locked_scope_and_interruptible_state
+provider_neutral: true
+capabilities:
+  repository_read: true
+  repository_write_on_isolated_branch: true
+  shell: false
+  network_beyond_repository_connector: false
+limits:
+  maximum_cycles: 2
+  maximum_active_slice_count: 1
+  automatic_merge: false
+  deployment: false
+required_handoff:
+  - write STATE.yaml before interruption
+  - do not create pilot/output.txt
+  - identify exact recovery read_set
