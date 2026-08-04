@@ -1,0 +1,26 @@
+schema_version: "1.0"
+profile_id: recovery-executor-v1
+status: PILOT_ONLY
+role: reconstruct_from_state_and_complete_one_bounded_output
+provider_neutral: true
+capabilities:
+  repository_read: true
+  repository_write_on_isolated_branch: true
+  shell: false
+  network_beyond_repository_connector: false
+limits:
+  maximum_cycles: 1
+  maximum_active_slice_count: 1
+  automatic_merge: false
+  deployment: false
+required_read_set:
+  - .rts-dev/REPOSITORY_ADAPTER.yaml
+  - .rts-dev/PROJECT.yaml
+  - .rts-dev/STATE.yaml
+  - .rts-dev/TESTS.yaml
+  - pilot/input.txt
+allowed_outputs:
+  - pilot/output.txt
+  - .rts-dev/EVIDENCE.yaml
+  - .rts-dev/STATE.yaml
+stop_at_human_gate: true
