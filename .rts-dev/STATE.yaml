@@ -1,0 +1,34 @@
+schema_version: "1.0"
+state_id: kernel-sandbox-recovery-pilot-001
+status: INTERRUPTED_READY_FOR_RECOVERY
+phase: PREPARATION_COMPLETE_OUTPUT_NOT_STARTED
+repository:
+  branch: agent/kernel-sandbox-recovery-pilot-001
+kernel_ref: 36eb72d45486dce9c201415526b47f1f781765be
+active_profile: baseline-planner-v1
+completed:
+  - repository rules read
+  - sandbox adapter pinned
+  - project scope locked
+  - tests locked
+  - input fixture added
+not_completed:
+  - pilot/output.txt
+  - deterministic test evaluation
+  - evidence packet
+forced_interruption: true
+recovery_profile: recovery-executor-v1
+recovery_read_set:
+  - .rts-dev/REPOSITORY_ADAPTER.yaml
+  - .rts-dev/PROJECT.yaml
+  - .rts-dev/STATE.yaml
+  - .rts-dev/TESTS.yaml
+  - pilot/input.txt
+next_bounded_action: create pilot/output.txt from the locked transformation, evaluate tests, write evidence, and stop at human merge gate
+rollback:
+  method: delete_pilot_branch
+human_gate:
+  required: true
+  action: review evidence and choose close-without-merge, merge, or revise
+unknowns:
+  - genuine cross-model execution has not yet been performed
