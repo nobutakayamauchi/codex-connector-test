@@ -1,0 +1,44 @@
+schema_version: "1.0"
+state_id: kernel-sandbox-recovery-pilot-001
+status: COMPLETE_PENDING_HUMAN_DECISION
+phase: RECOVERY_COMPLETE_STOPPED_AT_HUMAN_GATE
+repository:
+  branch: agent/kernel-sandbox-recovery-pilot-001
+kernel_ref: 36eb72d45486dce9c201415526b47f1f781765be
+preparation_profile: baseline-planner-v1
+recovery_profile: recovery-executor-v1
+recovery_mode: same_model_isolated_read_set
+completed:
+  - repository rules read
+  - sandbox adapter pinned
+  - project scope locked
+  - tests locked
+  - input fixture added
+  - forced interruption recorded before output creation
+  - recovery performed from declared read_set
+  - pilot/output.txt created
+  - deterministic tests passed
+  - scope review passed
+  - evidence packet recorded
+not_completed:
+  - genuine cross-model recovery execution
+  - human decision on pilot pull request
+forced_interruption: true
+recovery_read_set:
+  - .rts-dev/REPOSITORY_ADAPTER.yaml
+  - .rts-dev/PROJECT.yaml
+  - .rts-dev/STATE.yaml
+  - .rts-dev/TESTS.yaml
+  - pilot/input.txt
+output:
+  path: pilot/output.txt
+  sha256: 08baaf01a0dbf86bf577117349a9299fff18b195a8aebdbb3565149209085381
+evidence: .rts-dev/EVIDENCE.yaml
+next_bounded_action: human reviews the Draft PR and chooses close_without_merge, revise_pilot, or merge_as_test_history
+rollback:
+  method: close pull request and delete pilot branch
+human_gate:
+  required: true
+  automatic_merge: false
+unknowns:
+  - genuine cross-model compatibility remains unverified

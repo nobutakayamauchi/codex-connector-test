@@ -1,0 +1,78 @@
+schema_version: "1.0"
+evidence_id: kernel-sandbox-recovery-pilot-001
+status: COMPLETE_PENDING_HUMAN_DECISION
+execution:
+  preparation_profile: baseline-planner-v1
+  recovery_profile: recovery-executor-v1
+  recovery_mode: same_model_isolated_read_set
+  forced_interruption_recorded: true
+  prior_chat_required_for_recovery: false
+kernel:
+  repository: nobutakayamauchi/rts-dev-protocol
+  ref: 36eb72d45486dce9c201415526b47f1f781765be
+repository:
+  base_commit: 83eab75cfbdac24659ef1e7f6f663dedd1fe647b
+  branch: agent/kernel-sandbox-recovery-pilot-001
+  branch_was_ahead_by_before_evidence_commit: 8
+  branch_was_behind_by: 0
+output:
+  path: pilot/output.txt
+  sha256: 08baaf01a0dbf86bf577117349a9299fff18b195a8aebdbb3565149209085381
+  lines:
+    - apple
+    - banana
+    - grape
+    - orange
+test_results:
+  - id: TEST-OUTPUT-EXACT
+    result: PASS
+    evidence_class: VERIFIED_AUTOMATED
+    basis: exact content comparison with locked expected_lines
+  - id: TEST-NO-BLANKS
+    result: PASS
+    evidence_class: VERIFIED_AUTOMATED
+    basis: output contains four non-empty lines
+  - id: TEST-UNIQUE
+    result: PASS
+    evidence_class: VERIFIED_AUTOMATED
+    basis: four output lines are distinct
+  - id: TEST-SORTED
+    result: PASS
+    evidence_class: VERIFIED_AUTOMATED
+    basis: output is ascending by byte order
+  - id: TEST-SCOPE
+    result: PASS
+    evidence_class: VERIFIED_AUTOMATED
+    basis: GitHub comparison shows only added files under .rts-dev/** and pilot/**
+  - id: TEST-NO-RUNTIME
+    result: PASS
+    evidence_class: VERIFIED_HUMAN
+    basis: reviewed branch diff contains data and contract files only
+claims:
+  recovery_from_structured_state:
+    result: PASS
+    evidence_class: VERIFIED_HUMAN
+    limitation: performed in the same assistant session using only the declared recovery read_set
+  alternate_profile_contract:
+    result: PASS
+    evidence_class: VERIFIED_HUMAN
+    limitation: profile boundary changed, but the underlying model did not
+  genuine_cross_model_compatibility:
+    result: UNVERIFIED
+    evidence_class: UNVERIFIED
+    next_action: run the same recovery read_set with a materially different model or execution agent
+prohibited_actions:
+  automatic_merge: NOT_PERFORMED
+  deployment: NOT_PERFORMED
+  external_mutation_beyond_github_pilot_branch: NOT_PERFORMED
+  RTS_change: NOT_PERFORMED
+  secret_or_customer_data: NOT_ADDED
+rollback:
+  available: true
+  method: close pull request and delete pilot branch
+human_gate:
+  required: true
+  permitted_decisions:
+    - close_without_merge
+    - revise_pilot
+    - merge_as_test_history
