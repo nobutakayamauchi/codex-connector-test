@@ -1,0 +1,29 @@
+schema_version: "1.0"
+test_suite_id: kernel-sandbox-recovery-pilot-001
+status: LOCKED_FOR_PILOT
+tests:
+  - id: TEST-OUTPUT-EXACT
+    type: deterministic
+    assertion: pilot/output.txt lines equal [apple, banana, grape, orange]
+  - id: TEST-NO-BLANKS
+    type: deterministic
+    assertion: pilot/output.txt contains no blank lines
+  - id: TEST-UNIQUE
+    type: deterministic
+    assertion: every output line is unique
+  - id: TEST-SORTED
+    type: deterministic
+    assertion: output lines are ascending by byte order
+  - id: TEST-SCOPE
+    type: review
+    assertion: only .rts-dev/** and pilot/** are added or changed on the pilot branch
+  - id: TEST-NO-RUNTIME
+    type: review
+    assertion: no runtime, CI, deployment, external action, secret, or customer data is added
+completion_requires:
+  - TEST-OUTPUT-EXACT
+  - TEST-NO-BLANKS
+  - TEST-UNIQUE
+  - TEST-SORTED
+  - TEST-SCOPE
+  - TEST-NO-RUNTIME
