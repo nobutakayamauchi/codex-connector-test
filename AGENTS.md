@@ -1,44 +1,26 @@
 # AGENTS.md
 
-## Required reading
+## Status
+**COLD / SANDBOX-ONLY / EXPLICIT REFERENCE ONLY**
+
+This repository is a minimal test fixture for Codex/GitHub connector behavior. It is not a production repository and must not be included in ordinary cross-repository discovery or architecture reasoning.
+
+## Load rule
+Open this repository only when the task explicitly concerns connector testing, AGENTS adherence, sandbox behavior, or its own historical test evidence.
 
 Before editing, read:
-
 1. `README.md`
 2. `docs/STATUS.md`
 3. `docs/NEXT.md`
 
-## Purpose
+Do not recursively load RTS ecosystem repositories from here.
 
-This repository is a **sandbox-only test fixture** for validating Codex GitHub connector behavior, AGENTS.md adherence, and RTS-style routing output format.
+## Hard boundaries
+- No production responsibilities.
+- No secrets, credentials, private links, customer data, or real integration keys.
+- No live external mutation or publishing.
+- No product/runtime expansion.
+- Prefer archive/delete review over new implementation.
 
-It is now an archive/delete candidate.
-
-- This is **not** a production RTS repository.
-- Do **not** import RTS / Skills / MCP Packs / Hermes / Talent Registry / Signal Feeds implementations here.
-- Do **not** add API keys, secrets, credentials, private links, or runnable integration code.
-- Do **not** add SNS publishing flows or any external system mutation logic.
-- Do **not** add product behavior, customer information, or production responsibilities.
-
-## Authority and references
-
-- External repositories, signal feeds, registries, and docs are **reference/candidate inputs only**.
-- They must not be treated as source-of-truth authority in this sandbox.
-
-## Scope of changes
-
-- Keep this repository minimal.
-- Prefer archive or deletion review over expansion.
-- Add only test tasks, minimal registry references, and result/log placeholders needed for pre-test checks.
-- Do not absorb responsibilities that belong to the real production RTS repository.
-
-## Reporting format after changes
-
-When producing change summaries for this repository, separate output into:
-
-1. Confirmed facts
-2. Assumptions
-3. Unverified items
-4. Risks
-
-For documentation-only changes, also confirm that no production behavior, external mutation behavior, customer material, secrets, credentials, private links, or runtime integration was added.
+## Stop condition
+If the current task is not specifically about this sandbox, stop reading this repository and route to the actual canonical repository.
